@@ -14,7 +14,7 @@ public class MoveObjectController : MonoBehaviour
 	private bool playerEntered;
 	private bool showInteractMsg;
 	private GUIStyle guiStyle;
-	private string msg;
+	private string msg; // 메시지?
 
 	private int rayLayerMask; 
 
@@ -25,6 +25,7 @@ public class MoveObjectController : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag("Player");
 
 		fpsCam = Camera.main;
+
 		if (fpsCam == null)	//a reference to Camera is required for rayasts
 		{
 			Debug.LogError("A camera tagged 'MainCamera' is missing.");
@@ -83,6 +84,7 @@ public class MoveObjectController : MonoBehaviour
 					return;
 				}
 					
+
 				if (moveableObject != null)		//hit object must have MoveableDraw script attached
 				{
 					showInteractMsg = true;
@@ -90,9 +92,11 @@ public class MoveObjectController : MonoBehaviour
 
 					bool isOpen = anim.GetBool(animBoolNameNum);	//need current state for message.
 					msg = getGuiMsg(isOpen);
+					Debug.Log("플레이어 있음");
 
 					if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonDown("Fire1"))
 					{
+						Debug.Log("버튼눌림");
 						anim.enabled = true;
 						anim.SetBool(animBoolNameNum,!isOpen);
 						msg = getGuiMsg(!isOpen);

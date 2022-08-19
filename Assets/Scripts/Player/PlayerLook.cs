@@ -6,46 +6,22 @@ public class PlayerLook : MonoBehaviour
 {
     [SerializeField] private string mouseXInputName = "Mouse X";
     [SerializeField] private string mouseYInputName = "Mouse Y";
-    [SerializeField] private float mouseSensitivity = 150f;
+    [SerializeField] private float mouseSensitivity = 1000f;
 
-    [SerializeField] private Transform playerBody;
+    [SerializeField] private Transform position;
     private float xAxisClamp;
-    private bool m_cursorIsLocked = true;
 
     private void Awake()
     {
-        LockCursor();
         xAxisClamp = 0.0f;
-    }
-
-    private void LockCursor()
-    {
-       
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            m_cursorIsLocked = false;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            m_cursorIsLocked = true;
-        }
-
-        if (m_cursorIsLocked)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else if (!m_cursorIsLocked)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        
     }
 
     private void Update()
     {
-        CameraRotation();
+        if(GameManager.canPlayerMove)
+        {
+            CameraRotation();
+        }
     }
 
     private void CameraRotation()
@@ -69,7 +45,7 @@ public class PlayerLook : MonoBehaviour
         }
 
         transform.Rotate(Vector3.left * mouseY);
-        playerBody.Rotate(Vector3.up * mouseX);
+        position.Rotate(Vector3.up * mouseX);
     }
 
     private void ClampXAxisRotationToValue(float value)
