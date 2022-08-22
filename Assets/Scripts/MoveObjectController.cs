@@ -47,7 +47,8 @@ public class MoveObjectController : MonoBehaviour
 	void OnTriggerEnter(Collider other)
 	{		
 		if (other.gameObject == player)		//player has collided with trigger
-		{			
+		{
+			Debug.Log("플레이어 있음");
 			playerEntered = true;
 
 		}
@@ -56,7 +57,8 @@ public class MoveObjectController : MonoBehaviour
 	void OnTriggerExit(Collider other)
 	{		
 		if (other.gameObject == player)		//player has exited trigger
-		{			
+		{
+			Debug.Log("플레이어 없음");
 			playerEntered = false;
 			//hide interact message as player may not have been looking at object when they left
 			showInteractMsg = false;		
@@ -92,7 +94,7 @@ public class MoveObjectController : MonoBehaviour
 
 					bool isOpen = anim.GetBool(animBoolNameNum);	//need current state for message.
 					msg = getGuiMsg(isOpen);
-					Debug.Log("플레이어 있음");
+					
 
 					if (Input.GetKeyUp(KeyCode.E) || Input.GetButtonDown("Fire1"))
 					{
