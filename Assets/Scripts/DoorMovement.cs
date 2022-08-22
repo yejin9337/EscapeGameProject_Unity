@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum DoorState
+{
+    open,
+    close
+}
 
 public class DoorMovement : MonoBehaviour
 {
@@ -9,14 +14,13 @@ public class DoorMovement : MonoBehaviour
     private GameObject player;
 
     private bool playerEntered = false;
-    private bool open = false;
+    private bool open = true;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
         anim = GetComponent<Animator>();
-        anim.enabled = false;
     }
 
     void Update()
@@ -24,12 +28,11 @@ public class DoorMovement : MonoBehaviour
         if (playerEntered)
         {
 
-            if (Input.GetKeyUp(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("버튼눌림");
-                anim.enabled = !open;
+                anim.SetBool("isOpen_Obj_1", open);
                 open = !open;
-                //anim.SetBool("isOpen_Obj_1", true);
             }
         }
     }
