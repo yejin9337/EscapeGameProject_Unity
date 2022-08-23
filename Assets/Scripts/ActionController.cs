@@ -45,6 +45,7 @@ public class ActionController : MonoBehaviour
             {
                 ItemInfoAppear();
             }
+            
         }
         else
         {
