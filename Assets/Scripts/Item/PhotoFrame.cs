@@ -12,8 +12,6 @@ public class PhotoFrame : MonoBehaviour
         outline.OutlineMode = Outline.Mode.OutlineVisible;
         outline.OutlineColor = Color.red;
         outline.OutlineWidth = 5f;
-
-        outline.enabled = true;
     }
 
     void Update()

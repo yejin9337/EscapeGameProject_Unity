@@ -21,10 +21,12 @@ public class ActionController : MonoBehaviour
     [SerializeField]
     private Inventory inventory;
 
+    private PhotoFrame photoFrame;
+    public Image panel,breakerPanel;
+
 
     void Update()
     {
-        CheckItem();
         TryAction();
     }
 
@@ -35,21 +37,43 @@ public class ActionController : MonoBehaviour
             CheckItem();
             CanPickUp();
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            CheckItem();           
+        }
     }
 
     private void CheckItem()
     {
-        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hitInfo, range, layerMask))
+        if(Physics.Raycast(transform.position, transform.forward, out hitInfo, range, layerMask))
         {
             if(hitInfo.transform.tag == "Item")
             {
                 ItemInfoAppear();
+            }
+            if(hitInfo.transform.tag == "DetailItem")
+            {
+                UIAppear();
             }
         }
         else
         {
             InfoDisappear();
         }
+    }
+
+    private void UIAppear()
+    {
+        if (hitInfo.transform.name =="Photoframe")
+        {
+            panel.gameObject.SetActive(true);
+        }
+        if (hitInfo.transform.name =="3PCktBreaker")
+        {
+            breakerPanel.gameObject.SetActive(true);
+        }
+        GameManager.isOpenUI = true;
     }
 
     private void ItemInfoAppear()
@@ -71,7 +95,6 @@ public class ActionController : MonoBehaviour
         {
             if(hitInfo.transform != null)
             {
-                Debug.Log("È¹µæ");
                 inventory.AcquireItem(hitInfo.transform.GetComponent<ItemPickUp>().item);
                 Destroy(hitInfo.transform.gameObject);
                 InfoDisappear();

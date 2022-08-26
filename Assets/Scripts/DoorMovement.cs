@@ -27,10 +27,8 @@ public class DoorMovement : MonoBehaviour
     {
         if (playerEntered)
         {
-
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("버튼눌림");
                 anim.SetBool("isOpen_Obj_1", open);
                 open = !open;
             }
@@ -40,7 +38,6 @@ public class DoorMovement : MonoBehaviour
     {
         if (other.gameObject == player)
         {
-            Debug.Log("플레이어 있음");
             playerEntered = true;
         }
     }
@@ -49,7 +46,6 @@ public class DoorMovement : MonoBehaviour
     {
         if (other.gameObject == player)
         {
-            Debug.Log("플레이어 없음");
             playerEntered = false;
         }
     }
