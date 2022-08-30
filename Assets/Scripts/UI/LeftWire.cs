@@ -8,13 +8,17 @@ public class LeftWire : MonoBehaviour
 {
     [SerializeField]
     private RectTransform _wireBody;
-
-    //[SerializeField]
-    //private float offset = 0f;
-
     public EWireColor _wireColor { get; private set; }
+    public bool isConnected { get; private set; }
+
     [SerializeField]
     private List<Image> wireColorImage;
+
+    [SerializeField]
+    private Image lightImage;
+
+    [SerializeField]
+    private RightWire _connectedWire;
 
     private Canvas _canvas;
     void Start()
@@ -67,6 +71,31 @@ public class LeftWire : MonoBehaviour
         {
             image.color = color;
         }
-        //¾î¿ì ÇÏ±â½È¾û(¤·<-<)
+    }
+
+    public void ConnectWire(RightWire rightWire)
+    {
+        if(_connectedWire != null && _connectedWire != rightWire)
+        {
+            _connectedWire.DisconnectWire(this);
+            _connectedWire = null;
+        }
+        _connectedWire = rightWire;
+        if(_connectedWire._wireColor == _wireColor)
+        {
+            lightImage.color = Color.yellow;
+            isConnected = true;
+        }
+    }
+
+    public void DisconnectWire()
+    {
+        if(_connectedWire != null)
+        {
+            _connectedWire.DisconnectWire(this);
+            _connectedWire = null;
+        }
+        lightImage.color = Color.gray;
+        isConnected = false;
     }
 }

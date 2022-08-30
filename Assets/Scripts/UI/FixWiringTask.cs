@@ -78,13 +78,16 @@ public class FixWiringTask : MonoBehaviour
 
                         if (right != null)
                         {
-                            _selectedWire.SetTarget(hit.transform.position, 0f);
+                            _selectedWire.SetTarget(hit.transform.position, 50f);
+                            _selectedWire.ConnectWire(right);
+                            right.ConnectWire(_selectedWire);
                             _selectedWire = null;
                             return;
                         }
                     }
                 }
                 _selectedWire.ResetTarget();
+                _selectedWire.DisconnectWire();
                 _selectedWire = null;
             }
         }
