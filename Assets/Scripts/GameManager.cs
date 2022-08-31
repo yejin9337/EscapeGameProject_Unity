@@ -21,5 +21,7 @@ public class GameManager : MonoBehaviour
             Cursor.visible = false;
             canPlayerMove = true;
         }
+
+        
     }
 }

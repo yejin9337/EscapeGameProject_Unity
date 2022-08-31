@@ -13,7 +13,7 @@ public class DoorMovement : MonoBehaviour
     public Animator anim;
     private GameObject player;
 
-    private bool playerEntered = false;
+    public bool playerEntered = false;
     private bool open = true;
 
     void Start()
@@ -33,12 +33,20 @@ public class DoorMovement : MonoBehaviour
                 open = !open;
             }
         }
+
+        //if (_keyPad)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.E))
+        //    {
+
+        //    }
+        //}
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == player)
         {
-            playerEntered = true;
+            //playerEntered = true;
         }
     }
 
