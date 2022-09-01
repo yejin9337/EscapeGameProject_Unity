@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
     private GameObject _slotsParent;  // slot들의 부모 객체 - grid인가?
 
     // 슬롯들
-    private Slot[] slots;
+    public Slot[] slots;
     void Start()
     {
         slots = _slotsParent.GetComponentsInChildren<Slot>(); // slot들이 slots 배열 안에 들어가게 된다 - 어렵네;;

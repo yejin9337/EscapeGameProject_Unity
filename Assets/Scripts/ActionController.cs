@@ -21,7 +21,6 @@ public class ActionController : MonoBehaviour
     [SerializeField]
     private Inventory inventory;
 
-    private PhotoFrame photoFrame;
     public Image panel,breakerPanel;
 
 
@@ -38,7 +37,7 @@ public class ActionController : MonoBehaviour
             CanPickUp();
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             CheckItem();           
         }

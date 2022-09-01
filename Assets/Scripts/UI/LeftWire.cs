@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class LeftWire : MonoBehaviour
 {
     [SerializeField]
@@ -80,10 +79,13 @@ public class LeftWire : MonoBehaviour
             _connectedWire.DisconnectWire(this);
             _connectedWire = null;
         }
+
         _connectedWire = rightWire;
         if(_connectedWire._wireColor == _wireColor)
         {
             lightImage.color = Color.yellow;
+            // 이 시점이 연결이 성공하는 순간
+            //System.Action adsf;
             isConnected = true;
         }
     }

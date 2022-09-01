@@ -7,8 +7,8 @@ public class KeyPad : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI ans;
-
-    private DoorMovement _door;
+    
+    public DoorMovement _door;
     private string password = "911";
 
     public void Number(int number)
@@ -20,8 +20,8 @@ public class KeyPad : MonoBehaviour
     {
         if(ans.text == password)
         {
-            ans.text = "Correct";
-            _door.playerEntered = true;
+            ans.text = "Correct";           
+            _door.onKeyPad = false;
         }
         else
         {

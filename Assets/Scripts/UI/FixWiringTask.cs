@@ -90,11 +90,18 @@ public class FixWiringTask : MonoBehaviour
                 _selectedWire.DisconnectWire();
                 _selectedWire = null;
             }
+
+            //if()
+            //{
+
+            //}
         }
 
         if (_selectedWire != null)
         {
             _selectedWire.SetTarget(Input.mousePosition, 10f);
         }
+
+
     }
 }
