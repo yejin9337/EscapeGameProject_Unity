@@ -11,8 +11,8 @@ public class RightWire : MonoBehaviour
     [SerializeField]
     private List<LeftWire> connectedWire = new List<LeftWire>();
 
-    [SerializeField]
-    private Image lightImage;
+    //[SerializeField]
+    public Image lightImage;
 
     [SerializeField]
     private List<Image> wireColorImage;

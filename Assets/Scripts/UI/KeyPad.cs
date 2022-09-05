@@ -9,7 +9,7 @@ public class KeyPad : MonoBehaviour
     private TextMeshProUGUI ans;
     
     public DoorMovement _door;
-    private string password = "911";
+    private string password = "9999";
 
     public void Number(int number)
     {

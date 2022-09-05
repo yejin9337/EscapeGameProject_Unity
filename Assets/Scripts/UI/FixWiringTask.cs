@@ -18,7 +18,10 @@ public class FixWiringTask : MonoBehaviour
     [SerializeField]
     private List<RightWire> _rightWires;
 
-    private LeftWire _selectedWire;
+    private LeftWire _selectedLeftWire;
+    private RightWire _selectedRightWire;
+    public GameObject _light;
+
 
     public void OnEnable()
     {
@@ -60,14 +63,14 @@ public class FixWiringTask : MonoBehaviour
                 var left = hit.collider.GetComponentInParent<LeftWire>();
                 if (left != null)
                 {
-                    _selectedWire = left;
+                    _selectedLeftWire = left;
                 }
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            if (_selectedWire != null)
+            if (_selectedLeftWire != null)
             {
                 RaycastHit2D[] hits = Physics2D.RaycastAll(Input.mousePosition, Vector2.right, 1f);
                 foreach (var hit in hits)
@@ -78,28 +81,29 @@ public class FixWiringTask : MonoBehaviour
 
                         if (right != null)
                         {
-                            _selectedWire.SetTarget(hit.transform.position, 50f);
-                            _selectedWire.ConnectWire(right);
-                            right.ConnectWire(_selectedWire);
-                            _selectedWire = null;
+                            _selectedLeftWire.SetTarget(hit.transform.position, 50f);
+                            _selectedLeftWire.ConnectWire(right);
+                            right.ConnectWire(_selectedLeftWire);
+                            _selectedLeftWire = null;
                             return;
                         }
                     }
                 }
-                _selectedWire.ResetTarget();
-                _selectedWire.DisconnectWire();
-                _selectedWire = null;
+                _selectedLeftWire.ResetTarget();
+                _selectedLeftWire.DisconnectWire();
+                _selectedLeftWire = null;
             }
 
-            //if()
-            //{
-
-            //}
+            if (_selectedRightWire.isConnected)
+            {
+                Debug.Log("들어오긴하지?");
+                _light.gameObject.SetActive(true);
+            }
         }
 
-        if (_selectedWire != null)
+        if (_selectedLeftWire != null)
         {
-            _selectedWire.SetTarget(Input.mousePosition, 10f);
+            _selectedLeftWire.SetTarget(Input.mousePosition, 10f);
         }
 
 
